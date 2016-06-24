@@ -21,7 +21,7 @@ import org.jboss.resteasy.links.RESTServiceDiscovery;
  * 
  * @author Alexander Rashed, 1325897, alexander.rashed@tuwien.ac.at
  */
-@XmlRootElement
+@XmlRootElement(name = "billPage")
 @XmlSeeAlso({ Bill.class })
 @XmlAccessorType(XmlAccessType.NONE)
 @Mapped(namespaceMap = @XmlNsMap(jsonName = "atom", namespace = "http://www.w3.org/2005/Atom"))

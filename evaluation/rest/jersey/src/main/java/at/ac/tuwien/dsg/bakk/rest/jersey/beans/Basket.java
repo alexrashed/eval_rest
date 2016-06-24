@@ -18,8 +18,8 @@ import org.glassfish.jersey.linking.InjectLink;
 import org.glassfish.jersey.linking.InjectLink.Style;
 import org.glassfish.jersey.linking.InjectLinks;
 
-import at.ac.tuwien.dsg.bakk.rest.jersey.BillResource;
 import at.ac.tuwien.dsg.bakk.rest.jersey.BasketResource;
+import at.ac.tuwien.dsg.bakk.rest.jersey.BillResource;
 
 /**
  * Bean representing a single basket of the shop used to be transferred by the
@@ -38,6 +38,9 @@ public class Basket {
 	@XmlElement
 	private Bill bill;
 
+	@XmlElement
+	private String name;
+
 	@XmlElement(name = "articles")
 	private Collection<BasketEntry> articles;
 
@@ -50,20 +53,21 @@ public class Basket {
 	@XmlJavaTypeAdapter(Link.JaxbAdapter.class)
 	private List<Link> links;
 
-	public Basket(Long id, Collection<BasketEntry> articles, Bill bill) {
+	public Basket(Long id, Collection<BasketEntry> articles, Bill bill, String name) {
 		super();
 		this.setId(id);
 		this.articles = articles;
 		this.setBill(bill);
+		this.name = name;
 		this.links = new ArrayList<>();
 	}
 
-	public Basket(Collection<BasketEntry> articles, Bill bill) {
-		this(null, articles, bill);
+	public Basket(Collection<BasketEntry> articles, Bill bill, String name) {
+		this(null, articles, bill, name);
 	}
 
-	public Basket(Collection<BasketEntry> articles) {
-		this(null, articles, null);
+	public Basket(Collection<BasketEntry> articles, String name) {
+		this(null, articles, null, name);
 	}
 
 	public Basket() {
@@ -95,6 +99,14 @@ public class Basket {
 
 	public void setBill(Bill bill) {
 		this.bill = bill;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public List<Link> getLinks() {

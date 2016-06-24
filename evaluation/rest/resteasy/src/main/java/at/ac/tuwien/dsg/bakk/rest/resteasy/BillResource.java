@@ -2,6 +2,7 @@ package at.ac.tuwien.dsg.bakk.rest.resteasy;
 
 import static at.ac.tuwien.dsg.bakk.rest.base.ResourceUtils.createBean;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
 
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
@@ -36,7 +38,14 @@ public class BillResource {
 	private BillService billService = new BillService();
 
 	@GET
+	public Response getRedirect() throws Exception {
+		URI uri = UriBuilder.fromResource(BillResource.class).path(BillResource.class, "getBills").build();
+		return Response.temporaryRedirect(uri).build();
+	}
+
+	@GET
 	@AddLinks
+	@Path("/listing")
 	@LinkResources({ @LinkResource(value = Bill.class, rel = "list"),
 			@LinkResource(value = BillPage.class, rel = "prev", constraint = "${this.offset - this.limit >= 0}", queryParameters = {
 					@ParamBinding(name = "offset", value = "${this.offset - this.limit}"),
@@ -47,7 +56,7 @@ public class BillResource {
 			@LinkResource(value = BillPage.class, rel = "self", queryParameters = {
 					@ParamBinding(name = "offset", value = "${this.offset}"),
 					@ParamBinding(name = "limit", value = "${this.limit}") }) })
-	public BillPage getBaskets(@BeanParam PagingParameters paging) {
+	public BillPage getBills(@BeanParam PagingParameters paging) {
 		List<Bill> result = new ArrayList<>();
 		billService.get(paging.getOffset(), paging.getLimit()).forEach(e -> result.add(createBean(e, Bill.class)));
 		return new BillPage(result, paging.getOffset(), paging.getLimit(), billService.getLimit());

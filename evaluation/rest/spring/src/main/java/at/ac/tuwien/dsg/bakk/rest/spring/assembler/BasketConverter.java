@@ -33,6 +33,7 @@ public class BasketConverter extends ResourceConverterSupport<BasketEntity, Bask
 	@Override
 	public Basket toResource(BasketEntity entity) {
 		Basket basket = createResourceWithId(entity.getId(), entity);
+		basket.setName(entity.getName());
 		if (entity.getArticlesToAmount() != null && !entity.getArticlesToAmount().isEmpty()) {
 			Collection<BasketEntry> articles = new ArrayList<>();
 			for (Entry<ArticleEntity, Long> entry : entity.getArticlesToAmount().entrySet()) {
@@ -51,7 +52,7 @@ public class BasketConverter extends ResourceConverterSupport<BasketEntity, Bask
 	@Override
 	public BasketEntity fromResource(Basket resource, Long id) {
 		// we don't convert the articles
-		return new BasketEntity(id, null, null);
+		return new BasketEntity(id, null, null, null);
 	}
 
 }

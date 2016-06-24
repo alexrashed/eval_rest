@@ -27,15 +27,13 @@ import at.ac.tuwien.dsg.bakk.rest.jersey.ArticleResource;
  */
 @XmlAccessorType(XmlAccessType.NONE)
 @XmlRootElement(name = "article")
-@InjectLink(resource = ArticleResource.class, method = "getArticle", style = Style.ABSOLUTE, bindings = @Binding(name = "id", value = "${instance.id}") , rel = "self")
+@InjectLink(resource = ArticleResource.class, method = "getArticle", style = Style.ABSOLUTE, bindings = @Binding(name = "id", value = "${instance.id}"), rel = "self")
 public class Article {
 
 	@XmlTransient
 	private Long id;
 	@XmlElement
 	private String name;
-	@XmlElement
-	private String description;
 	@XmlElement
 	private BigDecimal price;
 	@XmlElement(name = "link")
@@ -44,20 +42,19 @@ public class Article {
 	private List<Link> links;
 
 	public Article() {
-		this(null, null, null);
+		this(null, null);
 	}
 
-	public Article(Long id, String name, String description, BigDecimal price) {
+	public Article(Long id, String name, BigDecimal price) {
 		super();
 		this.setId(id);
 		this.name = name;
-		this.description = description;
 		this.price = price;
 		this.links = new ArrayList<>();
 	}
 
-	public Article(String name, String description, BigDecimal price) {
-		this(null, name, description, price);
+	public Article(String name, BigDecimal price) {
+		this(null, name, price);
 	}
 
 	public Long getId() {
@@ -74,14 +71,6 @@ public class Article {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	public BigDecimal getPrice() {

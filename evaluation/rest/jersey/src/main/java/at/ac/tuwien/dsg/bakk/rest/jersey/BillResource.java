@@ -1,5 +1,7 @@
 package at.ac.tuwien.dsg.bakk.rest.jersey;
 
+import java.net.URI;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -11,6 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
 
 import at.ac.tuwien.dsg.bakk.rest.jersey.beans.Bill;
 import at.ac.tuwien.dsg.bakk.rest.jersey.beans.BillPage;
@@ -27,6 +30,13 @@ public class BillResource {
 	private BillService billService = new BillService();
 
 	@GET
+	public Response getRedirect() throws Exception {
+		URI uri = UriBuilder.fromResource(BillResource.class).path(BillResource.class, "getBills").build();
+		return Response.temporaryRedirect(uri).build();
+	}
+
+	@GET
+	@Path("/listing")
 	public BillPage getBills(@QueryParam("offset") @DefaultValue("0") int offset,
 			@QueryParam("limit") @DefaultValue("10") int limit) {
 		return new BillPage(billService, offset, limit);

@@ -3,6 +3,7 @@ package at.ac.tuwien.dsg.bakk.rest.jaxrs;
 import static at.ac.tuwien.dsg.bakk.rest.jaxrs.utils.LinkResourceUtils.createBean;
 import static at.ac.tuwien.dsg.bakk.rest.jaxrs.utils.LinkResourceUtils.createGetResponse;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -31,6 +32,13 @@ public class BillResource {
 	private BillService billService = new BillService();
 
 	@GET
+	public Response getRedirect() throws Exception {
+		URI uri = UriBuilder.fromResource(BillResource.class).path(BillResource.class, "getBills").build();
+		return Response.temporaryRedirect(uri).build();
+	}
+
+	@GET
+	@Path("/listing")
 	public Response getBills(@BeanParam PagingParameters paging) {
 		Collection<Bill> result = new ArrayList<>();
 		billService.get(paging.getOffset(), paging.getLimit())

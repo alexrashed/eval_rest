@@ -19,15 +19,17 @@ public class BasketEntity extends BaseEntity {
 	private Map<ArticleEntity, Long> articlesToAmount;
 	@OneToOne(mappedBy = "basket")
 	private BillEntity bill;
+	private String name;
 
-	public BasketEntity(Map<ArticleEntity, Long> articlesToAmount, BillEntity bill) {
-		this(null, articlesToAmount, bill);
+	public BasketEntity(Map<ArticleEntity, Long> articlesToAmount, BillEntity bill, String name) {
+		this(null, articlesToAmount, bill, name);
 	}
 
-	public BasketEntity(Long id, Map<ArticleEntity, Long> articlesToAmount, BillEntity bill) {
+	public BasketEntity(Long id, Map<ArticleEntity, Long> articlesToAmount, BillEntity bill, String name) {
 		super(id);
 		this.articlesToAmount = articlesToAmount;
 		this.bill = bill;
+		this.setName(name);
 	}
 
 	public BasketEntity() {
@@ -53,12 +55,21 @@ public class BasketEntity extends BaseEntity {
 		this.bill = bill;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
+		int result = super.hashCode();
 		result = prime * result + ((articlesToAmount == null) ? 0 : articlesToAmount.hashCode());
 		result = prime * result + ((bill == null) ? 0 : bill.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 
@@ -66,7 +77,7 @@ public class BasketEntity extends BaseEntity {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
@@ -80,6 +91,11 @@ public class BasketEntity extends BaseEntity {
 			if (other.bill != null)
 				return false;
 		} else if (!bill.equals(other.bill))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
 			return false;
 		return true;
 	}

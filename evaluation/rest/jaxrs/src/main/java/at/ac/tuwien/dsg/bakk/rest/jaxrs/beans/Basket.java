@@ -14,9 +14,11 @@ import javax.ws.rs.core.Link;
 public class Basket extends BaseBean {
 
 	private Collection<BasketEntry> articles;
+	private String name;
 
-	public Basket(Collection<BasketEntry> articles, Collection<Link> links) {
+	public Basket(Collection<BasketEntry> articles, String name, Collection<Link> links) {
 		super(links);
+		this.setName(name);
 		this.articles = articles;
 	}
 
@@ -33,5 +35,13 @@ public class Basket extends BaseBean {
 
 	public void setArticles(Collection<BasketEntry> articles) {
 		this.articles = articles;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

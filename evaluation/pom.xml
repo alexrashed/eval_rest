@@ -59,9 +59,7 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>${maven-surefire-plugin-version}</version>
 				<configuration>
-					<!-- TODO comment this out if test cases are implemented which are intended 
-						to fail! -->
-					<!-- <testFailureIgnore>true</testFailureIgnore> -->
+					<testFailureIgnore>true</testFailureIgnore>
 					<excludes>
 						<exclude>**/*IT.java</exclude>
 					</excludes>
@@ -80,9 +78,7 @@
 				<artifactId>maven-failsafe-plugin</artifactId>
 				<version>${maven-failsafe-plugin-version}</version>
 				<configuration>
-					<!-- TODO comment this out if test cases are implemented which are intended 
-						to fail! -->
-					<!-- <testFailureIgnore>true</testFailureIgnore> -->
+					<testFailureIgnore>true</testFailureIgnore>
 				</configuration>
 				<executions>
 					<execution>

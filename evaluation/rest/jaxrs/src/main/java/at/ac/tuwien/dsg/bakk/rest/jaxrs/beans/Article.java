@@ -13,13 +13,11 @@ import javax.ws.rs.core.Link;
  */
 public class Article extends BaseBean {
 	private String name;
-	private String description;
 	private BigDecimal price;
 
-	public Article(String name, String description, BigDecimal price, Collection<Link> links) {
+	public Article(String name, BigDecimal price, Collection<Link> links) {
 		super(links);
 		this.name = name;
-		this.description = description;
 		this.price = price;
 	}
 
@@ -33,14 +31,6 @@ public class Article extends BaseBean {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	public BigDecimal getPrice() {

@@ -16,14 +16,20 @@ import org.springframework.hateoas.ResourceSupport;
 @XmlRootElement
 public class Basket extends ResourceSupport {
 	private Collection<BasketEntry> articles;
+	private String name;
 
-	public Basket(Collection<BasketEntry> articles) {
+	public Basket(Collection<BasketEntry> articles, String name) {
 		super();
 		this.articles = articles;
+		this.setName(name);
+	}
+
+	public Basket(String name) {
+		this(null, name);
 	}
 
 	public Basket() {
-		super();
+		this(null);
 	}
 
 	public Collection<BasketEntry> getArticles() {
@@ -35,5 +41,13 @@ public class Basket extends ResourceSupport {
 
 	public void setArticles(Collection<BasketEntry> articles) {
 		this.articles = articles;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

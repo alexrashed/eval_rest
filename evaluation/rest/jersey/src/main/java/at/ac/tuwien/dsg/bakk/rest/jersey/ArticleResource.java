@@ -50,7 +50,7 @@ public class ArticleResource {
 		if (article == null) {
 			throw new BadRequestException("New article has to contain data!");
 		}
-		ArticleEntity entity = new ArticleEntity(article.getName(), article.getDescription(), article.getPrice());
+		ArticleEntity entity = new ArticleEntity(article.getName(), article.getPrice());
 		ArticleEntity created = articleService.createOrUpdate(entity);
 		URI link = UriBuilder.fromResource(ArticleResource.class).path(ArticleResource.class, "getArticle")
 				.build(created.getId());
@@ -67,8 +67,7 @@ public class ArticleResource {
 		if (article == null) {
 			throw new NotFoundException();
 		}
-		Article bean = new Article(article.getId(), article.getName(), article.getDescription(),
-				article.getPrice());
+		Article bean = new Article(article.getId(), article.getName(), article.getPrice());
 		List<BasketEntity> baskets = basketService.getAll();
 		for (BasketEntity basket : baskets) {
 			if (basket.getBill() == null) {
@@ -80,7 +79,8 @@ public class ArticleResource {
 				bean.getLinks().add(basketLink);
 			}
 		}
-		// do not use createGetResponse, we do not want to add the "tos:addToBasket"
+		// do not use createGetResponse, we do not want to add the
+		// "tos:addToBasket"
 		// Links in the header
 		Link self = Link
 				.fromUriBuilder(
@@ -96,7 +96,7 @@ public class ArticleResource {
 		if (article == null) {
 			throw new BadRequestException("Article to be created must not be null!");
 		}
-		ArticleEntity entity = new ArticleEntity(id, article.getName(), article.getDescription(), article.getPrice());
+		ArticleEntity entity = new ArticleEntity(id, article.getName(), article.getPrice());
 		articleService.createOrUpdate(entity);
 		return Response.ok().build();
 	}

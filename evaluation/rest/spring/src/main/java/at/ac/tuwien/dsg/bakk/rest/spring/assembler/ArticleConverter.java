@@ -42,12 +42,12 @@ public class ArticleConverter extends ResourceConverterSupport<ArticleEntity, Ar
 
 	@Override
 	public ArticleEntity fromResource(Article resource, Long id) {
-		return new ArticleEntity(id, resource.getName(), resource.getDescription(), resource.getPrice());
+		return new ArticleEntity(id, resource.getName(), resource.getPrice());
 	}
 
 	@Override
 	protected Article instantiateResource(ArticleEntity entity) {
-		return new Article(entity.getName(), entity.getDescription(), entity.getPrice());
+		return new Article(entity.getName(), entity.getPrice());
 	}
 
 }

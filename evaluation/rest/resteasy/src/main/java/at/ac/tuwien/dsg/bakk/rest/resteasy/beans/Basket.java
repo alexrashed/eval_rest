@@ -21,9 +21,9 @@ import org.jboss.resteasy.links.ResourceID;
  * 
  * @author Alexander Rashed, 1325897, alexander.rashed@tuwien.ac.at
  */
-@XmlRootElement
+@XmlRootElement(name = "basket")
 @XmlAccessorType(XmlAccessType.NONE)
-@Mapped(namespaceMap = @XmlNsMap(jsonName = "atom", namespace = "http://www.w3.org/2005/Atom") )
+@Mapped(namespaceMap = @XmlNsMap(jsonName = "atom", namespace = "http://www.w3.org/2005/Atom"))
 public class Basket {
 	@XmlTransient
 	@ResourceID
@@ -32,13 +32,16 @@ public class Basket {
 	@ParentResource
 	private Long billId;
 	@XmlElement
+	private String name;
+	@XmlElement
 	private Collection<BasketEntry> articles;
 	@XmlElement
 	private RESTServiceDiscovery links;
 
-	public Basket(Collection<BasketEntry> articles) {
+	public Basket(Collection<BasketEntry> articles, String name) {
 		super();
 		this.articles = articles;
+		this.setName(name);
 	}
 
 	public Basket() {
@@ -54,6 +57,14 @@ public class Basket {
 
 	public void setArticles(Collection<BasketEntry> articles) {
 		this.articles = articles;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Long getId() {

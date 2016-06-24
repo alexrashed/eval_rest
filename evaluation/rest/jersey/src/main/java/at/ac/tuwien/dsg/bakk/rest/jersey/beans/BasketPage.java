@@ -89,7 +89,7 @@ public class BasketPage {
 				for (Entry<ArticleEntity, Long> entry : entity.getArticlesToAmount().entrySet()) {
 					ArticleEntity articleEntity = entry.getKey();
 					Article article = new Article(articleEntity.getId(), articleEntity.getName(),
-							articleEntity.getDescription(), articleEntity.getPrice());
+							articleEntity.getPrice());
 					basketEntries.add(new BasketEntry(article, entry.getValue()));
 				}
 			}
@@ -99,7 +99,7 @@ public class BasketPage {
 				Long basketId = billEntity.getBasket() != null ? billEntity.getBasket().getId() : null;
 				bill = new Bill(billEntity.getId(), basketId);
 			}
-			Basket basket = new Basket(entity.getId(), basketEntries, bill);
+			Basket basket = new Basket(entity.getId(), basketEntries, bill, entity.getName());
 			getBaskets().add(basket);
 			// add the self link
 			Link self = Link

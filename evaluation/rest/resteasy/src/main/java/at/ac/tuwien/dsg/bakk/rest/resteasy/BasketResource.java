@@ -68,8 +68,9 @@ public class BasketResource {
 	@POST
 	@AddLinks
 	@LinkResource(Basket.class)
-	public Response createBasket() {
+	public Response createBasket(String name) {
 		BasketEntity entity = new BasketEntity();
+		entity.setName(name);
 		BasketEntity created = basketService.createOrUpdate(entity);
 		URI link = UriBuilder.fromResource(BasketResource.class).path(BasketResource.class, "getBasket")
 				.build(created.getId());

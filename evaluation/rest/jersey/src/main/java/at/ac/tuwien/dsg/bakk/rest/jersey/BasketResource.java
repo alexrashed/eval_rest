@@ -48,8 +48,9 @@ public class BasketResource {
 	}
 
 	@POST
-	public Response createBasket() {
+	public Response createBasket(String name) {
 		BasketEntity entity = new BasketEntity();
+		entity.setName(name);
 		BasketEntity created = basketService.createOrUpdate(entity);
 		URI link = UriBuilder.fromResource(BasketResource.class).path(BasketResource.class, "getBasket")
 				.build(created.getId());
@@ -68,8 +69,7 @@ public class BasketResource {
 			basketEntries = new ArrayList<>();
 			for (Entry<ArticleEntity, Long> entry : basket.getArticlesToAmount().entrySet()) {
 				ArticleEntity articleEntity = entry.getKey();
-				Article article = new Article(articleEntity.getId(), articleEntity.getName(),
-						articleEntity.getDescription(), articleEntity.getPrice());
+				Article article = new Article(articleEntity.getId(), articleEntity.getName(), articleEntity.getPrice());
 				basketEntries.add(new BasketEntry(article, entry.getValue()));
 			}
 		}
@@ -80,7 +80,7 @@ public class BasketResource {
 			bill = new Bill(billEntity.getId(), basketId);
 		}
 
-		return new Basket(basket.getId(), basketEntries, bill);
+		return new Basket(basket.getId(), basketEntries, bill, basket.getName());
 	}
 
 	@POST

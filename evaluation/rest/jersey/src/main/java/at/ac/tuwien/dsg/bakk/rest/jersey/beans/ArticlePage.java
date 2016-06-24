@@ -80,7 +80,7 @@ public class ArticlePage {
 		setArticles(new ArrayList<>());
 		List<ArticleEntity> list = articlesModel.get(offset, limit);
 		for (ArticleEntity entity : list) {
-			Article article = new Article(entity.getId(), entity.getName(), entity.getDescription(), entity.getPrice());
+			Article article = new Article(entity.getId(), entity.getName(), entity.getPrice());
 			getArticles().add(article);
 			// add the self link
 			Link self = Link

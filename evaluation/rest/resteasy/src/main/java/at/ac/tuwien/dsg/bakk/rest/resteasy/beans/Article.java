@@ -19,9 +19,9 @@ import org.jboss.resteasy.links.ResourceID;
  * 
  * @author Alexander Rashed, 1325897, alexander.rashed@tuwien.ac.at
  */
-@XmlRootElement
+@XmlRootElement(name = "article")
 @XmlAccessorType(XmlAccessType.NONE)
-@Mapped(namespaceMap = @XmlNsMap(jsonName = "atom", namespace = "http://www.w3.org/2005/Atom") )
+@Mapped(namespaceMap = @XmlNsMap(jsonName = "atom", namespace = "http://www.w3.org/2005/Atom"))
 public class Article {
 	@XmlTransient
 	@ResourceID
@@ -29,17 +29,14 @@ public class Article {
 	@XmlElement
 	private String name;
 	@XmlElement
-	private String description;
-	@XmlElement
 	private BigDecimal price;
 
 	@XmlElement
 	private RESTServiceDiscovery links;
 
-	public Article(String name, String description, BigDecimal price) {
+	public Article(String name, BigDecimal price) {
 		super();
 		this.name = name;
-		this.description = description;
 		this.price = price;
 	}
 
@@ -53,14 +50,6 @@ public class Article {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	public BigDecimal getPrice() {
