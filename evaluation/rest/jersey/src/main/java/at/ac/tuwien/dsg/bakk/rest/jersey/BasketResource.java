@@ -31,7 +31,7 @@ import model.ArticleEntity;
 import model.BasketEntity;
 import model.BillEntity;
 
-@Path("/baskets")
+@Path("/renamedBaskets")
 // XXX JSON does not work with the injected links because of the following bug:
 // https://java.net/jira/browse/JERSEY-2618
 @Produces(MediaType.APPLICATION_XML)

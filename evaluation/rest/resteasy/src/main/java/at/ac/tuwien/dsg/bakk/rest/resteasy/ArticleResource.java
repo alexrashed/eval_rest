@@ -41,7 +41,7 @@ import at.ac.tuwien.dsg.bakk.service.BasketService;
 import model.ArticleEntity;
 import model.BasketEntity;
 
-@Path("/articles")
+@Path("/renamedArticles")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ArticleResource {

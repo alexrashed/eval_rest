@@ -34,7 +34,7 @@ import model.ArticleEntity;
 import model.BasketEntity;
 import model.BillEntity;
 
-@Path("/baskets")
+@Path("/renamedBaskets")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class BasketResource {

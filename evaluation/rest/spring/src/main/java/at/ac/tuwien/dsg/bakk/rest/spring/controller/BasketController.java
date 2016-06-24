@@ -30,7 +30,7 @@ import model.BillEntity;
  */
 @Controller
 @ExposesResourceFor(Basket.class)
-@RequestMapping("/baskets")
+@RequestMapping("/renamedBaskets")
 public class BasketController extends BaseController<Basket, BasketEntity> {
 
 	@Autowired

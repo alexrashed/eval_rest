@@ -24,7 +24,7 @@ import at.ac.tuwien.dsg.bakk.rest.jaxrs.beans.Bill;
 import at.ac.tuwien.dsg.bakk.service.BillService;
 import model.BillEntity;
 
-@Path("/bills")
+@Path("/renamedBills")
 @Produces(MediaType.APPLICATION_JSON)
 public class BillResource {
 

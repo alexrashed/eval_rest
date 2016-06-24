@@ -29,7 +29,7 @@ import at.ac.tuwien.dsg.bakk.service.BasketService;
 import model.ArticleEntity;
 import model.BasketEntity;
 
-@Path("/articles")
+@Path("/renamedArticles")
 // XXX JSON does not work with the injected links because of the following bug:
 // https://java.net/jira/browse/JERSEY-2618
 @Produces(MediaType.APPLICATION_XML)
@@ -67,8 +67,7 @@ public class ArticleResource {
 		if (article == null) {
 			throw new NotFoundException();
 		}
-		Article bean = new Article(article.getId(), article.getName(), article.getDescription(),
-				article.getPrice());
+		Article bean = new Article(article.getId(), article.getName(), article.getDescription(), article.getPrice());
 		List<BasketEntity> baskets = basketService.getAll();
 		for (BasketEntity basket : baskets) {
 			if (basket.getBill() == null) {
@@ -80,7 +79,8 @@ public class ArticleResource {
 				bean.getLinks().add(basketLink);
 			}
 		}
-		// do not use createGetResponse, we do not want to add the "tos:addToBasket"
+		// do not use createGetResponse, we do not want to add the
+		// "tos:addToBasket"
 		// Links in the header
 		Link self = Link
 				.fromUriBuilder(

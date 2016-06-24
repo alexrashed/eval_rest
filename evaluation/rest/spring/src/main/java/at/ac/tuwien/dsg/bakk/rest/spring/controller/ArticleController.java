@@ -30,7 +30,7 @@ import model.BasketEntity;
  */
 @Controller
 @ExposesResourceFor(Article.class)
-@RequestMapping("/articles")
+@RequestMapping("/renamedArticles")
 public class ArticleController extends BaseController<Article, ArticleEntity> {
 
 	@Autowired

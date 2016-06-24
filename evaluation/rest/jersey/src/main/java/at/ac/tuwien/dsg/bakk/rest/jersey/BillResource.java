@@ -17,7 +17,7 @@ import at.ac.tuwien.dsg.bakk.rest.jersey.beans.BillPage;
 import at.ac.tuwien.dsg.bakk.service.BillService;
 import model.BillEntity;
 
-@Path("/bills")
+@Path("/renamedBills")
 // XXX JSON does not work with the injected links because of the following bug:
 // https://java.net/jira/browse/JERSEY-2618
 @Produces(MediaType.APPLICATION_XML)

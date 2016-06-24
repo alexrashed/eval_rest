@@ -33,7 +33,7 @@ import at.ac.tuwien.dsg.bakk.service.BasketService;
 import model.ArticleEntity;
 import model.BasketEntity;
 
-@Path("/articles")
+@Path("/renamedArticles")
 @Produces(MediaType.APPLICATION_JSON)
 public class ArticleResource {
 
@@ -104,7 +104,8 @@ public class ArticleResource {
 				bean.addLink(basketLink);
 			}
 		}
-		// do not use createGetResponse, we do not want to add the "tos:addToBasket"
+		// do not use createGetResponse, we do not want to add the
+		// "tos:addToBasket"
 		// Links in the header
 		Link self = Link
 				.fromUriBuilder(

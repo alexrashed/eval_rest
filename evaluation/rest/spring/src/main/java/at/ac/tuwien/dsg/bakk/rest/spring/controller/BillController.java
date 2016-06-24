@@ -18,7 +18,7 @@ import model.BillEntity;
  */
 @Controller
 @ExposesResourceFor(Bill.class)
-@RequestMapping("/bills")
+@RequestMapping("/renamedBills")
 public class BillController extends BaseController<Bill, BillEntity> {
 
 	public BillController() {
