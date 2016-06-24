@@ -11,7 +11,7 @@ public class RootResource {
 	@GET
 	public Response getRoot() {
 		Link[] links = { Link.fromResource(ArticleResource.class).rel("tos:articles").title("Articles").build(),
-				Link.fromResource(BasketResource.class).rel("tos:baskets").title("Baskets").build(),
+				Link.fromResource(RenamedBasketResource.class).rel("tos:baskets").title("Baskets").build(),
 				Link.fromResource(BillResource.class).rel("tos:bills").title("Bills").build() };
 		return Response.ok().links(links).build();
 	}

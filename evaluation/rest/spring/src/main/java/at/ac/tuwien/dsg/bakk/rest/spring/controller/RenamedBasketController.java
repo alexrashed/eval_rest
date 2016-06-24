@@ -31,18 +31,18 @@ import model.BillEntity;
 @Controller
 @ExposesResourceFor(Basket.class)
 @RequestMapping("/baskets")
-public class BasketController extends BaseController<Basket, BasketEntity> {
+public class RenamedBasketController extends BaseController<Basket, BasketEntity> {
 
 	@Autowired
 	private EntityLinks entityLinks;
 	private BillService billService = new BillService();
 
-	public BasketController() {
+	public RenamedBasketController() {
 		super(new BasketConverter(new ArticleConverter(new BasketService())), new BasketService());
 	}
 
 	@RequestMapping(path = "/{id}", method = RequestMethod.POST)
-	public ResponseEntity<Void> payBasket(@PathVariable Long id) {
+	public ResponseEntity<Void> renamedPayBasket(@PathVariable Long id) {
 		BasketEntity basket = service.getById(id);
 		if (basket == null) {
 			throw new NotFoundException("Basket not found.");

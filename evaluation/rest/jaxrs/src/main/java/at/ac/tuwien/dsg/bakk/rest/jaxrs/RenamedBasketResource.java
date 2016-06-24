@@ -37,7 +37,7 @@ import model.BillEntity;
 @Path("/baskets")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class BasketResource {
+public class RenamedBasketResource {
 
 	private BasketService basketService = new BasketService();
 	private BillService billService = new BillService();
@@ -46,7 +46,7 @@ public class BasketResource {
 	public Response getBaskets(@BeanParam PagingParameters paging) {
 		Collection<Basket> result = new ArrayList<>();
 		basketService.get(paging.getOffset(), paging.getLimit())
-				.forEach(e -> result.add(createBean(e, Basket.class, BasketResource.class, "getBasket")));
+				.forEach(e -> result.add(createBean(e, Basket.class, RenamedBasketResource.class, "getBasket")));
 
 		Collection<Link> links = new ArrayList<>();
 
@@ -82,7 +82,7 @@ public class BasketResource {
 	public Response createBasket() {
 		BasketEntity entity = new BasketEntity();
 		BasketEntity created = basketService.createOrUpdate(entity);
-		URI link = UriBuilder.fromResource(BasketResource.class).path(BasketResource.class, "getBasket")
+		URI link = UriBuilder.fromResource(RenamedBasketResource.class).path(RenamedBasketResource.class, "getBasket")
 				.build(created.getId());
 		return Response.created(link).build();
 	}
@@ -107,7 +107,7 @@ public class BasketResource {
 		if (basket.getBill() == null) {
 			Link payLink = Link
 					.fromUriBuilder(
-							UriBuilder.fromResource(BasketResource.class).path(BasketResource.class, "payBasket"))
+							UriBuilder.fromResource(RenamedBasketResource.class).path(RenamedBasketResource.class, "payBasket"))
 					.title("Pay the basket").rel("payment").build(basket.getId());
 			bean.addLink(payLink);
 		} else {
@@ -121,7 +121,7 @@ public class BasketResource {
 
 	@POST
 	@Path("/{basketId}")
-	public Response payBasket(@PathParam("basketId") Long id) {
+	public Response renamedPayBasket(@PathParam("basketId") Long id) {
 		BasketEntity basket = basketService.getById(id);
 		if (basket == null) {
 			throw new NotFoundException();

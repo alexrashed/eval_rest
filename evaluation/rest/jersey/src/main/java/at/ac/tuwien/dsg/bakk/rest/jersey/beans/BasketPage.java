@@ -19,7 +19,7 @@ import org.glassfish.jersey.linking.InjectLink;
 import org.glassfish.jersey.linking.InjectLink.Style;
 import org.glassfish.jersey.linking.InjectLinks;
 
-import at.ac.tuwien.dsg.bakk.rest.jersey.BasketResource;
+import at.ac.tuwien.dsg.bakk.rest.jersey.RenamedBasketResource;
 import at.ac.tuwien.dsg.bakk.service.BasketService;
 import model.ArticleEntity;
 import model.BasketEntity;
@@ -34,13 +34,13 @@ import model.BillEntity;
 @XmlAccessorType(XmlAccessType.NONE)
 @XmlRootElement(name = "baskets")
 @InjectLinks({
-		@InjectLink(resource = BasketResource.class, method = "getBaskets", style = Style.ABSOLUTE, bindings = {
+		@InjectLink(resource = RenamedBasketResource.class, method = "getBaskets", style = Style.ABSOLUTE, bindings = {
 				@Binding(name = "offset", value = "${instance.offset}"),
 				@Binding(name = "limit", value = "${instance.limit}") }, rel = "self"),
-		@InjectLink(resource = BasketResource.class, style = Style.ABSOLUTE, method = "getBaskets", condition = "${instance.offset + instance.limit < instance.modelLimit}", bindings = {
+		@InjectLink(resource = RenamedBasketResource.class, style = Style.ABSOLUTE, method = "getBaskets", condition = "${instance.offset + instance.limit < instance.modelLimit}", bindings = {
 				@Binding(name = "offset", value = "${instance.offset + instance.limit}"),
 				@Binding(name = "limit", value = "${instance.limit}") }, rel = "next"),
-		@InjectLink(resource = BasketResource.class, style = Style.ABSOLUTE, method = "getBaskets", condition = "${instance.offset - instance.limit >= 0}", bindings = {
+		@InjectLink(resource = RenamedBasketResource.class, style = Style.ABSOLUTE, method = "getBaskets", condition = "${instance.offset - instance.limit >= 0}", bindings = {
 				@Binding(name = "offset", value = "${instance.offset - instance.limit}"),
 				@Binding(name = "limit", value = "${instance.limit}") }, rel = "prev") })
 public class BasketPage {
@@ -56,13 +56,13 @@ public class BasketPage {
 	private BasketService basketsModel;
 
 	@InjectLinks({
-			@InjectLink(resource = BasketResource.class, method = "getBaskets", style = Style.ABSOLUTE, bindings = {
+			@InjectLink(resource = RenamedBasketResource.class, method = "getBaskets", style = Style.ABSOLUTE, bindings = {
 					@Binding(name = "offset", value = "${instance.offset}"),
 					@Binding(name = "limit", value = "${instance.limit}") }, rel = "self"),
-			@InjectLink(resource = BasketResource.class, style = Style.ABSOLUTE, method = "getBaskets", condition = "${instance.offset + instance.limit < instance.modelLimit}", bindings = {
+			@InjectLink(resource = RenamedBasketResource.class, style = Style.ABSOLUTE, method = "getBaskets", condition = "${instance.offset + instance.limit < instance.modelLimit}", bindings = {
 					@Binding(name = "offset", value = "${instance.offset + instance.limit}"),
 					@Binding(name = "limit", value = "${instance.limit}") }, rel = "next"),
-			@InjectLink(resource = BasketResource.class, style = Style.ABSOLUTE, method = "getBaskets", condition = "${instance.offset - instance.limit >= 0}", bindings = {
+			@InjectLink(resource = RenamedBasketResource.class, style = Style.ABSOLUTE, method = "getBaskets", condition = "${instance.offset - instance.limit >= 0}", bindings = {
 					@Binding(name = "offset", value = "${instance.offset - instance.limit}"),
 					@Binding(name = "limit", value = "${instance.limit}") }, rel = "prev") })
 	@XmlElement(name = "link")
@@ -104,7 +104,7 @@ public class BasketPage {
 			// add the self link
 			Link self = Link
 					.fromUriBuilder(
-							UriBuilder.fromResource(BasketResource.class).path(BasketResource.class, "getBasket"))
+							UriBuilder.fromResource(RenamedBasketResource.class).path(RenamedBasketResource.class, "getBasket"))
 					.rel("self").build(basket.getId());
 			basket.getLinks().add(self);
 		}

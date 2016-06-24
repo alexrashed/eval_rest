@@ -36,7 +36,7 @@ import model.BillEntity;
 // https://java.net/jira/browse/JERSEY-2618
 @Produces(MediaType.APPLICATION_XML)
 @Consumes(MediaType.APPLICATION_XML)
-public class BasketResource {
+public class RenamedBasketResource {
 
 	private BasketService basketService = new BasketService();
 	private BillService billService = new BillService();
@@ -51,7 +51,7 @@ public class BasketResource {
 	public Response createBasket() {
 		BasketEntity entity = new BasketEntity();
 		BasketEntity created = basketService.createOrUpdate(entity);
-		URI link = UriBuilder.fromResource(BasketResource.class).path(BasketResource.class, "getBasket")
+		URI link = UriBuilder.fromResource(RenamedBasketResource.class).path(RenamedBasketResource.class, "getBasket")
 				.build(created.getId());
 		return Response.created(link).build();
 	}
@@ -85,7 +85,7 @@ public class BasketResource {
 
 	@POST
 	@Path("/{id}")
-	public Response payBasket(@PathParam("id") Long id) {
+	public Response renamedPayBasket(@PathParam("id") Long id) {
 		BasketEntity basket = basketService.getById(id);
 		if (basket == null) {
 			throw new NotFoundException();

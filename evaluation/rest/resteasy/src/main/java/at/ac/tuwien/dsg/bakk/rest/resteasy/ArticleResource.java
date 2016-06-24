@@ -147,7 +147,7 @@ public class ArticleResource {
 		amount++;
 		articlesToAmount.put(article, amount);
 		basketService.createOrUpdate(basket);
-		URI basketURI = UriBuilder.fromResource(BasketResource.class).path(BasketResource.class, "getBasket")
+		URI basketURI = UriBuilder.fromResource(RenamedBasketResource.class).path(RenamedBasketResource.class, "getBasket")
 				.build(basket.getId());
 		return Response.seeOther(basketURI).build();
 	}

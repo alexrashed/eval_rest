@@ -25,7 +25,7 @@ public class RootController {
 	public Root get() {
 		Root root = new Root();
 		root.add(linkTo(ArticleController.class).withRel("articles"));
-		root.add(linkTo(BasketController.class).withRel("baskets"));
+		root.add(linkTo(RenamedBasketController.class).withRel("baskets"));
 		root.add(linkTo(BillController.class).withRel("bills"));
 		return root;
 	}

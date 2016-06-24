@@ -18,7 +18,7 @@ import org.glassfish.jersey.linking.InjectLink.Style;
 import org.glassfish.jersey.linking.InjectLinks;
 
 import at.ac.tuwien.dsg.bakk.rest.jersey.BillResource;
-import at.ac.tuwien.dsg.bakk.rest.jersey.BasketResource;
+import at.ac.tuwien.dsg.bakk.rest.jersey.RenamedBasketResource;
 
 /**
  * Bean representing a single bill of the shop used to be transferred by the
@@ -38,7 +38,7 @@ public class Bill {
 
 	@InjectLinks({
 			@InjectLink(resource = BillResource.class, method = "getBill", style = Style.ABSOLUTE, bindings = @Binding(name = "id", value = "${instance.id}"), rel = "self"),
-			@InjectLink(resource = BasketResource.class, method = "getBasket", style = Style.ABSOLUTE, bindings = @Binding(name = "id", value = "${instance.basketId}"), rel = "tos:basket", condition = "${instance.basketId != null}") })
+			@InjectLink(resource = RenamedBasketResource.class, method = "getBasket", style = Style.ABSOLUTE, bindings = @Binding(name = "id", value = "${instance.basketId}"), rel = "tos:basket", condition = "${instance.basketId != null}") })
 	@XmlElement(name = "link")
 	@XmlElementWrapper(name = "links")
 	@XmlJavaTypeAdapter(Link.JaxbAdapter.class)

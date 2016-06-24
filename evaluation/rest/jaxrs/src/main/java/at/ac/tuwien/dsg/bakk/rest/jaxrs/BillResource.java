@@ -76,7 +76,7 @@ public class BillResource {
 
 		Bill result = createBean(bill, Bill.class, BillResource.class, "getBill");
 		result.addLink(Link
-				.fromUriBuilder(UriBuilder.fromResource(BasketResource.class).path(BasketResource.class, "getBasket"))
+				.fromUriBuilder(UriBuilder.fromResource(RenamedBasketResource.class).path(RenamedBasketResource.class, "getBasket"))
 				.rel("tos:basket").type(MediaType.APPLICATION_JSON).build(bill.getBasket().getId()));
 		return createGetResponse(result);
 	}

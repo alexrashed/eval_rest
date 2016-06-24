@@ -4,7 +4,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 import at.ac.tuwien.dsg.bakk.rest.spring.beans.Bill;
-import at.ac.tuwien.dsg.bakk.rest.spring.controller.BasketController;
+import at.ac.tuwien.dsg.bakk.rest.spring.controller.RenamedBasketController;
 import at.ac.tuwien.dsg.bakk.rest.spring.controller.BillController;
 import model.BillEntity;
 
@@ -36,7 +36,7 @@ public class BillConverter extends ResourceConverterSupport<BillEntity, Bill> {
 		Bill bill = new Bill();
 
 		if (entity.getBasket() != null) {
-			bill.add(linkTo(methodOn(BasketController.class).get(entity.getBasket().getId())).withRel("basket"));
+			bill.add(linkTo(methodOn(RenamedBasketController.class).get(entity.getBasket().getId())).withRel("basket"));
 		}
 		return bill;
 	}

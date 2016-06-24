@@ -42,7 +42,7 @@ import model.BillEntity;
 @Path("/baskets")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class BasketResource {
+public class RenamedBasketResource {
 
 	private BasketService basketService = new BasketService();
 	private BillService billService = new BillService();
@@ -71,7 +71,7 @@ public class BasketResource {
 	public Response createBasket() {
 		BasketEntity entity = new BasketEntity();
 		BasketEntity created = basketService.createOrUpdate(entity);
-		URI link = UriBuilder.fromResource(BasketResource.class).path(BasketResource.class, "getBasket")
+		URI link = UriBuilder.fromResource(RenamedBasketResource.class).path(RenamedBasketResource.class, "getBasket")
 				.build(created.getId());
 		return Response.created(link).build();
 	}
@@ -101,7 +101,7 @@ public class BasketResource {
 	@POST
 	@Path("/{basketId}")
 	@LinkResource(value = Basket.class, rel = "payment", constraint = "${this.billId == null}")
-	public Response payBasket(@PathParam("basketId") Long id) {
+	public Response renamedPayBasket(@PathParam("basketId") Long id) {
 		BasketEntity basket = basketService.getById(id);
 		if (basket == null) {
 			throw new NotFoundException();

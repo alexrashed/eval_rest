@@ -19,7 +19,7 @@ import org.glassfish.jersey.linking.InjectLink.Style;
 import org.glassfish.jersey.linking.InjectLinks;
 
 import at.ac.tuwien.dsg.bakk.rest.jersey.BillResource;
-import at.ac.tuwien.dsg.bakk.rest.jersey.BasketResource;
+import at.ac.tuwien.dsg.bakk.rest.jersey.RenamedBasketResource;
 
 /**
  * Bean representing a single basket of the shop used to be transferred by the
@@ -29,7 +29,7 @@ import at.ac.tuwien.dsg.bakk.rest.jersey.BasketResource;
  */
 @XmlAccessorType(XmlAccessType.NONE)
 @XmlRootElement(name = "basket")
-@InjectLink(resource = BasketResource.class, method = "getBasket", style = Style.ABSOLUTE, bindings = @Binding(name = "id", value = "${instance.id}"), rel = "self")
+@InjectLink(resource = RenamedBasketResource.class, method = "getBasket", style = Style.ABSOLUTE, bindings = @Binding(name = "id", value = "${instance.id}"), rel = "self")
 public class Basket {
 
 	@XmlTransient
@@ -42,8 +42,8 @@ public class Basket {
 	private Collection<BasketEntry> articles;
 
 	@InjectLinks({
-			@InjectLink(resource = BasketResource.class, method = "getBasket", style = Style.ABSOLUTE, bindings = @Binding(name = "id", value = "${instance.id}"), rel = "self"),
-			@InjectLink(resource = BasketResource.class, method = "payBasket", style = Style.ABSOLUTE, bindings = @Binding(name = "id", value = "${instance.id}"), rel = "payment", title = "Pay the basket", condition = "${instance.bill == null}"),
+			@InjectLink(resource = RenamedBasketResource.class, method = "getBasket", style = Style.ABSOLUTE, bindings = @Binding(name = "id", value = "${instance.id}"), rel = "self"),
+			@InjectLink(resource = RenamedBasketResource.class, method = "payBasket", style = Style.ABSOLUTE, bindings = @Binding(name = "id", value = "${instance.id}"), rel = "payment", title = "Pay the basket", condition = "${instance.bill == null}"),
 			@InjectLink(resource = BillResource.class, method = "getBill", style = Style.ABSOLUTE, bindings = @Binding(name = "id", value = "${instance.bill.id}"), rel = "tos:bill", title = "Bill", condition = "${instance.bill != null}") })
 	@XmlElement(name = "link")
 	@XmlElementWrapper(name = "links")

@@ -10,7 +10,7 @@ import java.util.Map.Entry;
 import at.ac.tuwien.dsg.bakk.rest.spring.beans.Article;
 import at.ac.tuwien.dsg.bakk.rest.spring.beans.Basket;
 import at.ac.tuwien.dsg.bakk.rest.spring.beans.BasketEntry;
-import at.ac.tuwien.dsg.bakk.rest.spring.controller.BasketController;
+import at.ac.tuwien.dsg.bakk.rest.spring.controller.RenamedBasketController;
 import at.ac.tuwien.dsg.bakk.rest.spring.controller.BillController;
 import model.ArticleEntity;
 import model.BasketEntity;
@@ -26,7 +26,7 @@ public class BasketConverter extends ResourceConverterSupport<BasketEntity, Bask
 	private ResourceConverterSupport<ArticleEntity, Article> articleConverter;
 
 	public BasketConverter(ResourceConverterSupport<ArticleEntity, Article> articleConverter) {
-		super(BasketController.class, Basket.class);
+		super(RenamedBasketController.class, Basket.class);
 		this.articleConverter = articleConverter;
 	}
 
@@ -43,7 +43,7 @@ public class BasketConverter extends ResourceConverterSupport<BasketEntity, Bask
 		if (entity.getBill() != null) {
 			basket.add(linkTo(methodOn(BillController.class).get(entity.getBill().getId())).withRel("bill"));
 		} else {
-			basket.add(linkTo(methodOn(BasketController.class).payBasket(entity.getId())).withRel("payment"));
+			basket.add(linkTo(methodOn(RenamedBasketController.class).renamedPayBasket(entity.getId())).withRel("payment"));
 		}
 		return basket;
 	}

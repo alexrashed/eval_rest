@@ -11,7 +11,7 @@ public class RestEvaluationApplication extends ResourceConfig {
 		register(DeclarativeLinkingFeature.class);
 		register(ArticleResource.class);
 		register(RootResource.class);
-		register(BasketResource.class);
+		register(RenamedBasketResource.class);
 		register(BillResource.class);
 	}
 }
