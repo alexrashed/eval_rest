@@ -1,0 +1,91 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>at.ac.tuwien.dsg.bakk.rest</groupId>
+		<artifactId>rest</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>jersey</artifactId>
+	<packaging>war</packaging>
+
+	<name>Jersey Backend</name>
+	<description>Backend implementation using the jersey framework</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>at.ac.tuwien.dsg.bakk.rest</groupId>
+			<artifactId>base</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.glassfish.jersey.ext</groupId>
+		    <artifactId>jersey-declarative-linking</artifactId>
+		    <scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-client</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-json-jackson</artifactId>
+		    <scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<dependencies>
+					<dependency>
+						<groupId>org.glassfish.jersey.core</groupId>
+						<artifactId>jersey-server</artifactId>
+						<version>${jersey-version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.glassfish.jersey.containers</groupId>
+						<artifactId>jersey-container-servlet-core</artifactId>
+						<version>${jersey-version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.glassfish.jersey.containers</groupId>
+						<artifactId>jersey-container-servlet</artifactId>
+						<version>${jersey-version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.glassfish.jersey.containers</groupId>
+						<artifactId>jersey-container-jetty-http</artifactId>
+						<version>${jersey-version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.glassfish.jersey.media</groupId>
+						<artifactId>jersey-media-moxy</artifactId>
+						<version>${jersey-version}</version>
+					</dependency>
+					<dependency>
+					    <groupId>org.glassfish.jersey.ext</groupId>
+					    <artifactId>jersey-declarative-linking</artifactId>
+						<version>${jersey-version}</version>
+					</dependency>
+					<dependency>
+					    <groupId>javax.el</groupId>
+					    <artifactId>javax.el-api</artifactId>
+					    <version>${javax-el-version}</version>
+					</dependency>
+					<dependency>
+					    <groupId>org.glassfish.web</groupId>
+					    <artifactId>javax.el</artifactId>
+					    <version>${javax-el-version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+</project>

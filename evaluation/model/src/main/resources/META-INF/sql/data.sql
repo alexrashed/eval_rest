@@ -1,0 +1,1 @@
+--INSERT INTO Article(number, name, description, price) VALUES (1, 'Test', 'Test', 15.3);

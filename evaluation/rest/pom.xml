@@ -1,0 +1,89 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>at.ac.tuwien.dsg.bakk</groupId>
+		<artifactId>evaluation</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<groupId>at.ac.tuwien.dsg.bakk.rest</groupId>
+	<artifactId>rest</artifactId>
+	<packaging>pom</packaging>
+
+	<name>Parent Project for REST backend projects</name>
+	<description>Parent project for the REST framework projects for REST specific configurations</description>
+
+	<modules>
+		<module>base</module>
+		<module>jaxrs</module>
+		<module>jersey</module>
+		<module>resteasy</module>
+		<module>spring</module>
+	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>at.ac.tuwien.dsg.bakk</groupId>
+			<artifactId>service</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
+        <dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>eclipselink</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+			        <groupId>org.apache.maven.plugins</groupId>
+			        <artifactId>maven-war-plugin</artifactId>
+			        <configuration>
+				        <failOnMissingWebXml>false</failOnMissingWebXml>
+			        </configuration>
+			    </plugin>
+				<plugin>
+					<groupId>org.eclipse.jetty</groupId>
+					<artifactId>jetty-maven-plugin</artifactId>
+					<version>${maven-jetty-plugin-version}</version>
+					<configuration>
+						<scanIntervalSeconds>10</scanIntervalSeconds>
+						<stopKey>foo</stopKey>
+						<stopPort>9999</stopPort>
+						<stopWait>3</stopWait>
+					</configuration>
+					<executions>
+						<execution>
+							<id>start-jetty</id>
+							<phase>pre-integration-test</phase>
+							<goals>
+								<goal>start</goal>
+							</goals>
+							<configuration>
+								<scanIntervalSeconds>0</scanIntervalSeconds>
+							</configuration>
+						</execution>
+						<execution>
+							<id>stop-jetty</id>
+							<phase>post-integration-test</phase>
+							<goals>
+								<goal>stop</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

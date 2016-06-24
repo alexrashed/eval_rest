@@ -1,0 +1,109 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>at.ac.tuwien.dsg.bakk.rest</groupId>
+		<artifactId>rest</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>resteasy</artifactId>
+	<packaging>war</packaging>
+
+	<name>RestEasy Backend</name>
+	<description>Backend implementation using the RestEasy framework</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>at.ac.tuwien.dsg.bakk.rest</groupId>
+			<artifactId>base</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-links</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-client</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxb-provider</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jettison-provider</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<dependencies>
+					<dependency>
+						<groupId>org.jboss.resteasy</groupId>
+						<artifactId>resteasy-jaxrs</artifactId>
+						<version>${resteasy-version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.resteasy</groupId>
+						<artifactId>resteasy-links</artifactId>
+						<version>${resteasy-version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.resteasy</groupId>
+						<artifactId>resteasy-servlet-initializer</artifactId>
+						<version>${resteasy-version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.resteasy</groupId>
+						<artifactId>resteasy-jaxb-provider</artifactId>
+						<version>${resteasy-version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.resteasy</groupId>
+						<artifactId>resteasy-jettison-provider</artifactId>
+						<version>${resteasy-version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.resteasy</groupId>
+						<artifactId>resteasy-multipart-provider</artifactId>
+						<version>${resteasy-version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.resteasy</groupId>
+						<artifactId>resteasy-cache-core</artifactId>
+						<version>${resteasy-version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.resteasy</groupId>
+						<artifactId>resteasy-yaml-provider</artifactId>
+						<version>${resteasy-version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.resteasy</groupId>
+						<artifactId>resteasy-atom-provider</artifactId>
+						<version>${resteasy-version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.jboss.resteasy</groupId>
+						<artifactId>async-http-servlet-3.0</artifactId>
+						<version>${resteasy-version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+</project>
