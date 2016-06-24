@@ -18,8 +18,8 @@ import org.glassfish.jersey.linking.InjectLink;
 import org.glassfish.jersey.linking.InjectLink.Style;
 import org.glassfish.jersey.linking.InjectLinks;
 
-import at.ac.tuwien.dsg.bakk.rest.jersey.BasketResource;
 import at.ac.tuwien.dsg.bakk.rest.jersey.BillResource;
+import at.ac.tuwien.dsg.bakk.rest.jersey.BasketResource;
 
 /**
  * Bean representing a single basket of the shop used to be transferred by the
