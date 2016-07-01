@@ -1,5 +1,5 @@
 # Evaluation of HEATEOAS support by Java frameworks
-This repository contains the source code for the evaluation part of my bachelor thesis.
+This repository contains the source code for the evaluation part of my bachelor thesis as well as the thesis itself.
 
 ## Build
 Plain standard maven install in the evaluation dir: 
